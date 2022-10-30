@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-## ACEP: Análisis Computacional de Eventos de Protesta<img src="man/figures/logo.png" align="right" height="139"/>
+# ACEP: Análisis Computacional de Eventos de Protesta<img src="man/figures/logo.svg" align="right" height="139"/>
 
 <!-- badges: start -->
 
@@ -12,7 +12,8 @@ coverage](https://codecov.io/gh/agusnieto77/ACEP/branch/master/graph/badge.svg)]
 [![Project Status: Active – The project has reached a stable, usable
 state and is being actively
 developed.](https://www.repostatus.org/badges/latest/active.svg)](https://www.repostatus.org/#active)
-[![](https://img.shields.io/badge/devel%20version-0.0.1.9000-blue.svg)](https://github.com/agusnieto77/ACEP)
+[![](https://www.r-pkg.org/badges/version/ACEP)](https://cran.r-project.org/package=ACEP)
+[![](https://img.shields.io/badge/devel%20version-0.0.2.9000-blue.svg)](https://github.com/agusnieto77/ACEP)
 [![License:
 MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.org/web/licenses/MIT)
 [![](https://img.shields.io/github/languages/code-size/agusnieto77/ACEP.svg)](https://github.com/agusnieto77/ACEP)
@@ -20,7 +21,8 @@ MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://cran.r-project.
 [![](https://img.shields.io/badge/Build%20with-R%20&%20RStudio-blue?style=plastic=appveyor)](https://github.com/agusnieto77/ACEP)
 [![](https://img.shields.io/badge/ACEP-ready%20to%20use-color:%20#39c?style=plastic=appveyor)](https://github.com/agusnieto77/ACEP)
 [![](https://img.shields.io/badge/Developed%20by-SISMOS-darkred?style=plastic=appveyor)](https://observatoriodeconflictividad.org/el-pulso-de-la-conflictividad-en-tiempo-real/)
-
+[![](http://cranlogs.r-pkg.org/badges/grand-total/ACEP)](https://cran.r-project.org/package=ACEP)
+[![](http://cranlogs.r-pkg.org/badges/last-month/ACEP)](https://cran.r-project.org/package=ACEP)
 <!-- badges: end -->
 
 ### Visión general
@@ -31,12 +33,21 @@ Sus funciones son aplicables a cualquier corpus de textos. Además de las
 funciones, ACEP contiene también bases de datos con colecciones de notas
 sobre protestas y una colección de diccionarios de palabras conflictivas
 y otros tópicos referidos a diferentes aspectos del análisis de eventos
-protesta.
+de protesta.
+
+### Instalación de la versión estable
+
+Puedes instalar la versión estable de ACEP desde
+[CRAN](https://CRAN.R-project.org/package=ACEP) con:
+
+``` r
+install.packages("ACEP")
+```
 
 ### Instalación de la versión en desarrollo
 
 Puedes instalar la versión de desarrollo de ACEP desde
-[GitHub](https://github.com/) con:
+[GitHub](https://github.com/agusnieto77/ACEP) con:
 
 ``` r
 # install.packages("devtools")
@@ -45,23 +56,29 @@ devtools::install_github("agusnieto77/ACEP")
 
 ### Funciones
 
-| Nombre             | Descripción                                                           |
-|:-------------------|:----------------------------------------------------------------------|
-| `acep_db()`        | Frecuencia, menciones e intensidad.                                   |
-| `acep_frec()`      | Frecuencia de palabras totales.                                       |
-| `acep_int()`       | Índice de intensidad.                                                 |
-| `acep_load_base()` | Carga bases de datos creadas por el Observatorio.                     |
-| `acep_men()`       | Frecuencia de menciones de palabras.                                  |
-| `acep_post_rst()`  | Resumen visual de la serie temporal de los índices de conflictividad. |
-| `acep_post_st()`   | Gráfico de barras de la serie temporal de índices de conflictividad.  |
-| `acep_rst()`       | Serie temporal de índices de conflictividad.                          |
+| Nombre               | Descripción                                                           |
+|:---------------------|:----------------------------------------------------------------------|
+| `acep_clean()`       | Limpieza de texto.                                                    |
+| `acep_db()`          | Frecuencia, menciones e intensidad.                                   |
+| `acep_detect()`      | Detección de menciones de palabras.                                   |
+| `acep_frec()`        | Frecuencia de palabras totales.                                       |
+| `acep_int()`         | Índice de intensidad.                                                 |
+| `acep_load_base()`   | Carga bases de datos creadas por el Observatorio.                     |
+| `acep_men()`         | Frecuencia de menciones de palabras.                                  |
+| `acep_post_rst()`    | Resumen visual de la serie temporal de los índices de conflictividad. |
+| `acep_post_st()`     | Gráfico de barras de la serie temporal de índices de conflictividad.  |
+| `acep_rst()`         | Serie temporal de índices de conflictividad.                          |
+| `acep_token()`       | Función para tokenizar.                                               |
+| `acep_token_plot()`  | Gráfico de barras de palabras más recurrentes en un corpus.           |
+| `acep_token_table()` | Tabla de frecuencia de palabras tokenizadas.                          |
 
 ### Colecciones
 
-| Nombre              | Descripción                |
-|:--------------------|:---------------------------|
-| `acep_bases`        | Colección de notas.        |
-| `acep_diccionarios` | Colección de diccionarios. |
+| Nombre              | Descripción                                             |
+|:--------------------|:--------------------------------------------------------|
+| `acep_bases`        | Colección de notas.                                     |
+| `acep_diccionarios` | Colección de diccionarios.                              |
+| `acep_rs`           | Cadenas de caracteres para limpiar y normalizar textos. |
 
 ### Corpus
 
@@ -133,6 +150,7 @@ de Gral. Pueyrredon, Buenos Aires, Argentina.
 ### Uso de las funciones del paquete ACEP: un ejemplo.
 
 ``` r
+
 # Cargamos la librería
 require(ACEP)
 #> Loading required package: ACEP
@@ -149,54 +167,63 @@ revista_puerto <- acep_load_base(rp_mdp)
 # Cargamos el diccionario de conflictos de SISMOS
 dicc_confl_sismos <- acep_diccionarios$dicc_confl_sismos
 
-# Con la función acep_frec() contamos la frecuencia de palabras de cada nota y creamos una
-# nueva columna llamada  n_palabras
+# Con la función acep_frec() contamos la frecuencia de palabras de cada nota
+# y creamos una nueva columna llamada  n_palabras
 revista_puerto$n_palabras <- acep_frec(revista_puerto$nota)
 
 # Imprimimos en pantalla la base con la nueva columna de frecuencia de palabras
 revista_puerto |> head()
 #> # A tibble: 6 × 7
-#>   fecha      titulo                         bajada nota  imagen link  n_palabras
-#>   <date>     <chr>                          <chr>  <chr> <chr>  <chr>      <int>
-#> 1 2020-12-29 ¡Feliz Año 2021 para todos nu… Con m… "Con… https… http…         31
-#> 2 2020-12-28 Mapa del trabajo esclavo en a… Un re… "El … https… http…       1128
-#> 3 2020-12-24 Plantas piden tener garantiza… En Ch… "El … https… http…        530
-#> 4 2020-12-24 Los obreros navales despiden … En Ma… "El … https… http…        483
-#> 5 2020-12-23 El incumplimiento del régimen… Se ll… "Las… https… http…        525
-#> 6 2020-12-23 Otro fallo ratifica cautelar … La Cá… "La … https… http…        462
+#>   fecha      titulo                            bajada nota  imagen link  n_pal…¹
+#>   <date>     <chr>                             <chr>  <chr> <chr>  <chr>   <dbl>
+#> 1 2020-12-29 ¡Feliz Año 2021 para todos nuest… Con m… "Con… https… http…      31
+#> 2 2020-12-28 Mapa del trabajo esclavo en agua… Un re… "El … https… http…    1128
+#> 3 2020-12-24 Plantas piden tener garantizada … En Ch… "El … https… http…     530
+#> 4 2020-12-24 Los obreros navales despiden el … En Ma… "El … https… http…     483
+#> 5 2020-12-23 El incumplimiento del régimen de… Se ll… "Las… https… http…     525
+#> 6 2020-12-23 Otro fallo ratifica cautelar con… La Cá… "La … https… http…     462
+#> # … with abbreviated variable name ¹​n_palabras
 
-# Ahora con la función acep_men() contamos la frecuencia de menciones de términos del
-# diccionario de conflictividad de SISMOS de cada nota y creamos una nueva columna llamada  conflictos
-revista_puerto <- revista_puerto[1:100,] # elaboramos un corpus más pequeño para el ejemplo
+# Ahora con la función acep_men() contamos la frecuencia de menciones de
+# términos del diccionario de conflictividad de SISMOS de cada nota y
+# creamos una nueva columna llamada  conflictos.
+# Elaboramos un corpus más pequeño para el ejemplo
+revista_puerto <- revista_puerto[1:100, ]
 revista_puerto$conflictos <- acep_men(revista_puerto$nota, dicc_confl_sismos)
 
-# Imprimimos en pantalla la base con la nueva columna de menciones del diccionario de conflictividad
+# Imprimimos en pantalla la base con la nueva columna de
+# menciones del diccionario de conflictividad
 revista_puerto  |> head()
 #> # A tibble: 6 × 8
-#>   fecha      titulo              bajada nota  imagen link  n_palabras conflictos
-#>   <date>     <chr>               <chr>  <chr> <chr>  <chr>      <int>      <int>
-#> 1 2020-12-29 ¡Feliz Año 2021 pa… Con m… "Con… https… http…         31          0
-#> 2 2020-12-28 Mapa del trabajo e… Un re… "El … https… http…       1128          4
-#> 3 2020-12-24 Plantas piden tene… En Ch… "El … https… http…        530          3
-#> 4 2020-12-24 Los obreros navale… En Ma… "El … https… http…        483          8
-#> 5 2020-12-23 El incumplimiento … Se ll… "Las… https… http…        525          4
-#> 6 2020-12-23 Otro fallo ratific… La Cá… "La … https… http…        462          6
+#>   fecha      titulo                    bajada nota  imagen link  n_pal…¹ confl…²
+#>   <date>     <chr>                     <chr>  <chr> <chr>  <chr>   <dbl>   <dbl>
+#> 1 2020-12-29 ¡Feliz Año 2021 para tod… Con m… "Con… https… http…      31       0
+#> 2 2020-12-28 Mapa del trabajo esclavo… Un re… "El … https… http…    1128       4
+#> 3 2020-12-24 Plantas piden tener gara… En Ch… "El … https… http…     530       3
+#> 4 2020-12-24 Los obreros navales desp… En Ma… "El … https… http…     483       8
+#> 5 2020-12-23 El incumplimiento del ré… Se ll… "Las… https… http…     525       4
+#> 6 2020-12-23 Otro fallo ratifica caut… La Cá… "La … https… http…     462       6
+#> # … with abbreviated variable names ¹​n_palabras, ²​conflictos
 
-# Ahora con la función acep_int() calculamos un índice de intensidad de la conflictividad y creamos una
-# nueva columna llamada  intensidad
-revista_puerto$intensidad <- acep_int(revista_puerto$conflictos, revista_puerto$n_palabras, 3)
+# Ahora con la función acep_int() calculamos un índice de intensidad de
+# la conflictividad y creamos una nueva columna llamada  intensidad
+revista_puerto$intensidad <- acep_int(
+  revista_puerto$conflictos,
+  revista_puerto$n_palabras,
+  3)
 
 # Imprimimos en pantalla la base con la nueva columna de intensidad
 revista_puerto  |> head()
 #> # A tibble: 6 × 9
-#>   fecha      titulo   bajada nota  imagen link  n_palabras conflictos intensidad
-#>   <date>     <chr>    <chr>  <chr> <chr>  <chr>      <int>      <int>      <dbl>
-#> 1 2020-12-29 ¡Feliz … Con m… "Con… https… http…         31          0      0    
-#> 2 2020-12-28 Mapa de… Un re… "El … https… http…       1128          4      0.004
-#> 3 2020-12-24 Plantas… En Ch… "El … https… http…        530          3      0.006
-#> 4 2020-12-24 Los obr… En Ma… "El … https… http…        483          8      0.017
-#> 5 2020-12-23 El incu… Se ll… "Las… https… http…        525          4      0.008
-#> 6 2020-12-23 Otro fa… La Cá… "La … https… http…        462          6      0.013
+#>   fecha      titulo            bajada nota  imagen link  n_pal…¹ confl…² inten…³
+#>   <date>     <chr>             <chr>  <chr> <chr>  <chr>   <dbl>   <dbl>   <dbl>
+#> 1 2020-12-29 ¡Feliz Año 2021 … Con m… "Con… https… http…      31       0   0    
+#> 2 2020-12-28 Mapa del trabajo… Un re… "El … https… http…    1128       4   0.004
+#> 3 2020-12-24 Plantas piden te… En Ch… "El … https… http…     530       3   0.006
+#> 4 2020-12-24 Los obreros nava… En Ma… "El … https… http…     483       8   0.017
+#> 5 2020-12-23 El incumplimient… Se ll… "Las… https… http…     525       4   0.008
+#> 6 2020-12-23 Otro fallo ratif… La Cá… "La … https… http…     462       6   0.013
+#> # … with abbreviated variable names ¹​n_palabras, ²​conflictos, ³​intensidad
 ```
 
 ``` r
@@ -204,7 +231,7 @@ revista_puerto  |> head()
 revista_puerto <- acep_load_base(rp_mdp)
 
 # Creamos un subset
-subset_rp <- revista_puerto[1:100,]
+subset_rp <- revista_puerto[1:100, ]
 
 # Cargamos el diccionario de conflictos de SISMOS
 dicc_confl_sismos <- acep_diccionarios$dicc_confl_sismos
@@ -215,14 +242,15 @@ rp_procesada <- acep_db(subset_rp, subset_rp$nota, dicc_confl_sismos, 3)
 # Imprimimos en pantalla la base con las tres columna creadas
 rp_procesada |> head()
 #> # A tibble: 6 × 9
-#>   fecha      titulo   bajada nota  imagen link  n_palabras conflictos intensidad
-#>   <date>     <chr>    <chr>  <chr> <chr>  <chr>      <int>      <int>      <dbl>
-#> 1 2020-12-29 ¡Feliz … Con m… "Con… https… http…         31          0      0    
-#> 2 2020-12-28 Mapa de… Un re… "El … https… http…       1128          4      0.004
-#> 3 2020-12-24 Plantas… En Ch… "El … https… http…        530          3      0.006
-#> 4 2020-12-24 Los obr… En Ma… "El … https… http…        483          8      0.017
-#> 5 2020-12-23 El incu… Se ll… "Las… https… http…        525          4      0.008
-#> 6 2020-12-23 Otro fa… La Cá… "La … https… http…        462          6      0.013
+#>   fecha      titulo            bajada nota  imagen link  n_pal…¹ confl…² inten…³
+#>   <date>     <chr>             <chr>  <chr> <chr>  <chr>   <dbl>   <dbl>   <dbl>
+#> 1 2020-12-29 ¡Feliz Año 2021 … Con m… "Con… https… http…      31       0   0    
+#> 2 2020-12-28 Mapa del trabajo… Un re… "El … https… http…    1128       4   0.004
+#> 3 2020-12-24 Plantas piden te… En Ch… "El … https… http…     530       3   0.006
+#> 4 2020-12-24 Los obreros nava… En Ma… "El … https… http…     483       8   0.017
+#> 5 2020-12-23 El incumplimient… Se ll… "Las… https… http…     525       4   0.008
+#> 6 2020-12-23 Otro fallo ratif… La Cá… "La … https… http…     462       6   0.013
+#> # … with abbreviated variable names ¹​n_palabras, ²​conflictos, ³​intensidad
 ```
 
 ``` r
@@ -230,8 +258,9 @@ rp_procesada |> head()
 rp_procesada <- acep_bases$rp_procesada
 
 # Ahora con la función acep_rst() elaboramos un resumen estadístico
-rp_procesada <- acep_rst(rp_procesada, rp_procesada$fecha, rp_procesada$n_palabras, 
-                         rp_procesada$conflictos, st = 'anio', u = 4)
+rp_procesada <- acep_rst(
+  rp_procesada, rp_procesada$fecha, rp_procesada$n_palabras,
+  rp_procesada$conflictos, st = "anio", u = 4)
 
 # Imprimimos en pantalla la base con las métricas de conflictividad
 rp_procesada |> head()
@@ -243,21 +272,22 @@ rp_procesada |> head()
 #> 5 2013   689  24 525718   758 1.0559     0.0014          0.0348
 #> 6 2014   631  30 444823   802 1.2112     0.0018          0.0475
 
-# Ahora con la función acep_plot_st() elaboramos un gráfico de barras 
+# Ahora con la función acep_plot_st() elaboramos un gráfico de barras
 # con menciones del diccionario de conflictividad
 acep_plot_st(rp_procesada$st, rp_procesada$frecm,
-             t = 'Evolución de la conflictividad en el sector pesquero argentino',
-             ejex = 'Años analizados',
-             ejey = 'Menciones del diccionario de conflictos',
-             etiquetax = 'horizontal')
+ t = "Evolución de la conflictividad en el sector pesquero argentino",
+ ejex = "Años analizados",
+ ejey = "Menciones del diccionario de conflictos",
+ etiquetax = "horizontal")
 ```
 
 <img src="man/figures/README-ejemplo3-1.png" width="100%" />
 
 ``` r
-# Ahora con la función acep_plot_rst() elaboramos una visualización resumen
-# con cuatro gráficos de barras 
-acep_plot_rst(rp_procesada, tagx = 'vertical')
+
+# Ahora con la función acep_plot_rst() elaboramos una visualización resumen.
+# con cuatro gráficos de barras
+acep_plot_rst(rp_procesada, tagx = "vertical")
 ```
 
 <img src="man/figures/README-ejemplo3-2.png" width="100%" />

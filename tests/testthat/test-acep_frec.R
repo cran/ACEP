@@ -1,4 +1,3 @@
-context("test-acep_frec")
 
 test_that("ACEP Frec", {
   skip_if_offline()
@@ -8,5 +7,3 @@ test_that("ACEP Frec", {
   dimensiones <- length(rev_puerto$nota)
   expect_equal(dimensiones, length(rev_puerto$n_palabras))
 })
-
-
