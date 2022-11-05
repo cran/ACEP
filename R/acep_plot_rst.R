@@ -1,15 +1,15 @@
-#' @title Resumen visual de la serie temporal de los índices de conflictividad.
-#' @description Función que devuelve un panel visual de cuatro gráficos
-#' de barras con variables proxy de los índices de conflictividad agrupados
+#' @title Resumen visual de la serie temporal de los indices de conflictividad.
+#' @description Funcion que devuelve un panel visual de cuatro graficos
+#' de barras con variables proxy de los indices de conflictividad agrupados
 #' por segmento de tiempo.
-#' @param db data frame con datos procesados.
-#' @param tagx orientación de las etiquetas del
+#' @param datos data frame con datos procesados.
+#' @param tagx orientacion de las etiquetas del
 #' eje x ('horizontal' | 'vertical').
 #' @export acep_plot_rst
 #' @importFrom graphics par
 #' @return Si todas las entradas son correctas,
-#' la salida será una imagen de cuatro paneles.
-#' @keywords visualización
+#' la salida sera una imagen de cuatro paneles.
+#' @keywords visualizacion
 #' @examples
 #' datos <- acep_bases$rp_procesada
 #' fecha <- datos$fecha
@@ -19,22 +19,25 @@
 #' fecha, n_palabras, conflictos, st = 'anio')
 #' acep_plot_rst(datos_procesados_anio, tagx = 'vertical')
 #' @export
-acep_plot_rst <- function(db, tagx = "horizontal") {
-  oldpar <- par(no.readonly = TRUE)
-  on.exit(par(oldpar))
-  db <- db
-  par(mfrow = c(2, 2))
-  acep_plot_st(db$st, db$int_notas_confl,
-               t = "Eventos de protesta",
-               etiquetax = tagx)
-  acep_plot_st(db$st, db$frecm,
-               t = "Acciones de protesta",
-               etiquetax = tagx)
-  acep_plot_st(db$st, db$intensidad,
-               t = "Intensidad de la protesta",
-               etiquetax = tagx)
-  acep_plot_st(db$st, db$intac,
-               t = "Intensidad acumulada de la protesta",
-               etiquetax = tagx)
-  par(mfrow = c(1, 1))
+acep_plot_rst <- function(datos, tagx = "horizontal") {
+      tryCatch({
+      oldpar <- par(no.readonly = TRUE)
+      on.exit(par(oldpar))
+      datos <- datos
+      par(mfrow = c(2, 2))
+      acep_plot_st(datos$st, datos$int_notas_confl,
+                   t = "Eventos de protesta",
+                   etiquetax = tagx)
+      acep_plot_st(datos$st, datos$frecm,
+                   t = "Acciones de protesta",
+                   etiquetax = tagx)
+      acep_plot_st(datos$st, datos$intensidad,
+                   t = "Intensidad de la protesta",
+                   etiquetax = tagx)
+      acep_plot_st(datos$st, datos$intac,
+                   t = "Intensidad acumulada de la protesta",
+                   etiquetax = tagx)
+      par(mfrow = c(1, 1))
 }
+    )
+  }

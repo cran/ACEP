@@ -2,8 +2,18 @@
 test_that("ACEP Frec", {
   skip_if_offline()
   skip_on_cran()
-  rev_puerto <- acep_bases$rev_puerto
-  rev_puerto$n_palabras <- acep_frec(rev_puerto$nota)
-  dimensiones <- length(rev_puerto$nota)
-  expect_equal(dimensiones, length(rev_puerto$n_palabras))
+  frec <- acep_frec("El SUTEBA fue al paro. Reclaman mejoras salariales.")
+  dimensiones <- length(frec)
+  expect_equal(dimensiones, length(frec))
+})
+
+test_that("ACEP Frec E1", {
+  skip_if_offline()
+  skip_on_cran()
+  df <- data.frame(texto =
+                     c("El SUTEBA fue al paro. Reclaman mejoras salariales.",
+                       "El SOIP lleva adelante un plan de lucha con paros y piquetes."))
+  frec <- acep_frec(df)
+  dimensiones <- length(frec)
+  expect_equal(dimensiones, length(frec))
 })
