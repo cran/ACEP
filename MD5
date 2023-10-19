@@ -1,4 +1,4 @@
-f88fefaeefd58cdbbf9f6ff0cfbcdfa8 *DESCRIPTION
+e7435358bbcafed2ec7cca6ba5c0afc0 *DESCRIPTION
 b8f7383a10c6dfe2288ba24a55f5a839 *LICENSE
 6b94a824f7757728f2f2405214f294ff *NAMESPACE
 0c45e5acba64b3a8e13f8a5039d3de4a *NEWS.md
@@ -44,6 +44,7 @@ f0781e8572c9c7ffb0e1127f888224a9 *man/figures/README-ejemplo3-1.png
 3c213f952bf67c2567ccf056e6cba94c *man/figures/README-ejemplo3-2.png
 18d4b78afae58e70102e82491cdacd73 *man/figures/logo.svg
 0b0a7fb4b5913306929b4ecfb01d3a31 *tests/testthat.R
+49235d19b69bdbfebb8f3d841c72de89 *tests/testthat/Rplots.pdf
 ab1a28fb0053495b7d6287b2084a1b94 *tests/testthat/test-acep_clean.R
 975d65130caa713f37b0fe241f00981a *tests/testthat/test-acep_db.R
 dc97061711b9df99e8b7fae5cb123811 *tests/testthat/test-acep_detect.R
